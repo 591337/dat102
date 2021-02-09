@@ -21,23 +21,29 @@ public class SirkulaerKoe<T> implements KoeADT<T> {
 
 	public SirkulaerKoe(int startKapasitet) {
 		foran = bak = antall = 0;
-		koe = ((T[]) (new Object[startKapasitet]));
+		koe = (T[]) (new Object[startKapasitet]);
 	}
 
 	public void innKoe(T element) {
 		if (antall() == koe.length)
 			utvid();
 
-		//TODO
+		koe[bak] = element;
+		bak = (bak+1)%koe.length;
 		
+		antall++;
 	}
 
 	public T utKoe()  {
 		if (erTom())
 			throw new EmptyCollectionException("koe");
-
-	  //TODO
-		return null;
+		
+		T ut = koe[foran];
+		foran = (foran+1)%koe.length;
+		
+		antall--;
+		
+		return ut;
 	}
 
 	public T foerste()  {
@@ -58,8 +64,12 @@ public class SirkulaerKoe<T> implements KoeADT<T> {
 
 	private void utvid() {
 		T[] hjelpetabell = (T[]) (new Object[koe.length * 2]);
-		//TODO
-		
+		for (int i=0; i<antall; i++) {
+			hjelpetabell[i] = koe[(foran+i)%koe.length];
+		}
+		foran = 0;
+		bak = koe.length;
+		koe = hjelpetabell;
 	}
 }// class
 

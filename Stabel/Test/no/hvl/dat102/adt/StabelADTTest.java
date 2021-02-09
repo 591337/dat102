@@ -9,10 +9,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 import no.hvl.dat102.exception.EmptyCollectionException;
-import no.hvl.dat102.adt.StabelADT;
 
 /**
  * Test for StabelADT.
